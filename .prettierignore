@@ -1,0 +1,5 @@
+dist
+/*.js
+/*.json
+/babel.config.js
+/prettier.config.js
