@@ -1,3 +1,4 @@
+import { AppError } from './../../../../errors/AppError';
 import {
   inject, injectable
 } from 'tsyringe';
@@ -28,7 +29,7 @@ class CreateUserUseCase {
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
     if (userAlreadyExists) {
-      throw new Error("user already exists");
+      throw new AppError("user already exists");
     }
 
     const passwordHash = await hash(password, 8);

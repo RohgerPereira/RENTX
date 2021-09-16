@@ -3,7 +3,7 @@ import {
 } from "express";
 import {
   AuthenticateUserController
-} from "../modules/accounts/authenticateuser/AuthenticateUserController";
+} from "../modules/accounts/useCases/authenticateuser/AuthenticateUserController";
 
 const authenticateRoutes = Router();
 

@@ -1,10 +1,11 @@
+import { AppError } from '../../../../errors/AppError';
 import {
   inject,
   injectable
 } from "tsyringe";
 import {
   IUsersRepository
-} from "../repositories/IUsersRepository";
+} from "../../repositories/IUsersRepository";
 import {
   compare
 } from "bcrypt";
@@ -38,13 +39,13 @@ class AuthenticateUserUseCase {
   }: IRequest): Promise<IResponse> {
     const user = await this.userRepository.findByEmail(email);
     if (!user) {
-      throw new Error("Email or password incorrect");
+      throw new AppError("Email or password incorrect");
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new Error("Email or password incorrect");
+      throw new AppError("Email or password incorrect");
     }
 
     const token = sign({}, "50fd55484b90f1d7e9fd64277ed8c3c9", {
